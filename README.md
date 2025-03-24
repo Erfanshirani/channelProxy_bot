@@ -103,3 +103,18 @@ if __name__ == "__main__":
     main()
 pip install python-telegram-bot requests
 python bot.py
+import requests
+
+def send_proxy_to_channel(context: CallbackContext):
+    proxy = requests.get("https://api.proxyscrape.com/v2/?request=getproxies&protocol=http").text.split("\n")[0]
+    context.bot.send_message(
+        chat_id=CHANNEL_ID,
+        text=f"🔐 پروکسی جدید:\n\n`{proxy}`\n\n@ProxyBot",
+        parse_mode="Markdown"
+    )
+
+# زمان‌بندی ارسال هر 1 ساعت
+job_queue = updater.job_queue
+job_queue.run_repeating(send_proxy_to_channel, interval=3600, first=0)
+pip install python-telegram-bot requests
+python bot.py
