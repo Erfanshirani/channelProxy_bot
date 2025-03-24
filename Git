@@ -1,0 +1,8 @@
+# کپی ریپازیتوری به کامپیوتر شما
+   git clone https://github.com/username/telegram-proxy-bot.git
+   cd telegram-proxy-bot
+
+   # کپی فایل‌های پروژه به این پوشه (مثلاً bot.py و requirements.txt)
+   git add .
+   git commit -m "اولین آپلود: اضافه کردن کد ربات"
+   git push origin main
