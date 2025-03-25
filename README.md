@@ -19,3 +19,14 @@
 pip install -r requirements.txt
 
 python bot.py
+---
+
+### **2. تصاویر و آیکون‌های پیشنهادی**  
+- **آیکون ربات**:  
+  ![Bot Icon](https://icons.iconarchive.com/icons/dtafalonso/android-l/512/Proxy-Proxy-icon.png) *(سایز 512x512)*  
+- **نمودار معماری**:  
+  ```mermaid
+  graph LR
+    A[ربات] --> B{سرور تلگرام}
+    B --> C[ارسال پروکسی]
+    C --> D[کاربران]
