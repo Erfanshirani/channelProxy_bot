@@ -30,3 +30,4 @@ python bot.py
     A[ربات] --> B{سرور تلگرام}
     B --> C[ارسال پروکسی]
     C --> D[کاربران]
+[مستندات تلگرام بوت](https://core.telegram.org/bots/api)
