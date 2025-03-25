@@ -118,3 +118,49 @@ job_queue = updater.job_queue
 job_queue.run_repeating(send_proxy_to_channel, interval=3600, first=0)
 pip install python-telegram-bot requests
 python bot.py
+def filter_us_proxies(proxies):
+    # این تابع نیاز به API تشخیص کشور IP دارد (مثلاً ipinfo.io)
+    us_proxies = []
+    for proxy in proxies:
+        ip = proxy.split(":")[0]
+        # در اینجا از یک سرویس مثل ipinfo.io استفاده کنید
+        # country = get_country_from_ip(ip)
+        # if country == "US":
+        #     us_proxies.append(proxy)
+    return us_proxies or proxies  # اگر فیلتر شکست خورد، همه را برگردان
+    import random
+
+def send_random_proxy(update: Update, context: CallbackContext):
+    proxy = random.choice(proxies_list)
+    update.message.reply_text(
+        f"🔐 پروکسی تصادفی:\n\n`{proxy}`\n\nبرای استفاده، آن را در تنظیمات VPN وارد کنید.",
+        parse_mode="Markdown"
+    )
+
+# در تابع main() اضافه کنید:
+dp.add_handler(CommandHandler("proxy", send_random_proxy))
+def load_proxies(filename="proxyscrape_premium_http_proxies.txt"):
+    with open(filename, "r") as file:
+        proxies = [line.strip() for line in file if line.strip()]
+    return proxies
+
+proxies_list = load_proxies()
+print(f"تعداد پروکسی‌های بارگذاری شده: {len(proxies_list)}")
+import requests
+
+def check_proxy(proxy):
+    try:
+        response = requests.get(
+            "http://ipinfo.io/json",
+            proxies={"http": f"http://{proxy}", "https": f"http://{proxy}"},
+            timeout=5
+        )
+        return response.json()  # اطلاعات IP و کشور
+    except:
+        return None
+
+# مثال استفاده:
+working_proxies = [p for p in proxies_list if check_proxy(p)]
+print(f"پروکسی‌های فعال: {len(working_proxies)}/{len(proxies_list)}")
+pip install python-telegram-bot requests
+python bot.py
