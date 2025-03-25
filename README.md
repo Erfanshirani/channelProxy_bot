@@ -164,3 +164,13 @@ working_proxies = [p for p in proxies_list if check_proxy(p)]
 print(f"پروکسی‌های فعال: {len(working_proxies)}/{len(proxies_list)}")
 pip install python-telegram-bot requests
 python bot.py
+from deta import Deta
+
+deta = Deta("پروژه_کلید_شما")
+db = deta.Base("working_proxies")
+
+def save_working_proxies():
+    for proxy in working_proxies:
+        db.put({"key": proxy, "status": "active"})
+        pip install python-telegram-bot requests
+        python bot.py
