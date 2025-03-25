@@ -6,3 +6,4 @@ config.py
 __pycache__/
 *.log
 *.pyc
+from config import TOKEN, CHANNEL_ID, PROXY_API
